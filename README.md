@@ -1,5 +1,5 @@
 # ParshantRajput-dobby
-website for iamge search and Upload
+website for image search and Upload
 
 # Live Demo 
 https://parshant-rajput-dobby.vercel.app/

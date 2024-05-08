@@ -9,7 +9,8 @@ const router = express.Router();
 router
   .route("/image/")
   .get(auth, imageCtrl.getImages)
-  .post(auth, upload.single("file"), imageCtrl.uploadImage)
-  .delete(auth, imageCtrl.deleteImage);
+  .post(auth, upload.single("file"), imageCtrl.uploadImage);
+
+router.route("/search").get(imageCtrl.searchImage);
 
 export default router;

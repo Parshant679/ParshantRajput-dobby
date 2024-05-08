@@ -32,10 +32,22 @@ const imageCtrl = {
       .limit(10);
 
     return res
-      .status(201)
-      .json(new apiResponse(200, "Video retrived Successfully", userImages));
+      .status(200)
+      .json(new apiResponse(200, "images retrived Successfully", userImages));
   },
-  deleteImage: async (req, res) => {},
+  searchImage: async (req, res) => {
+    const { searchText, pageNo } = req.query;
+    const skipCount = (pageNo - 1) * 10;
+    const images = await ImageFile.find({
+      name: { $regex: searchText, $options: "i" },
+    })
+      .skip(skipCount)
+      .limit(10);
+
+    return res
+      .status(201)
+      .json(new apiResponse(200, "images searched Successfully", images));
+  },
 };
 
 export default imageCtrl;

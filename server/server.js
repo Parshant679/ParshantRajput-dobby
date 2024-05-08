@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 import userRoutes from "./routes/userRoutes";
 import imageRoutes from "./routes/imageRoutes";
-
+import connectDB from "./db/index";
 const app = new express();
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -22,7 +22,9 @@ app.use(cookieParser);
 app.use("/api", userRoutes);
 app.use("/api", imageRoutes);
 
+// connect to Database
+connectDB();
 //  Listening to server
-app.listen(8080, (req, res) => {
-  console.log("Listening at Port : 8080");
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`server Started at PORT : ${process.env.PORT}`);
 });

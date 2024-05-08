@@ -1,6 +1,7 @@
 import { createAccessToken, cookieOptions } from "../utills/generateTokens";
 import { apiResponse } from "../utills/ApiResponse";
 import { apiError } from "../utills/ApiError";
+import bcrypt from "bcrypt";
 import User from "../models/user.model";
 
 const userCtrl = {
@@ -11,10 +12,11 @@ const userCtrl = {
     if (existedUser) {
       return new apiError(409, "User with email already exists ");
     }
+    const passwordHash = await bcrypt.hash(password, 10);
     const user = new User({
       name: name,
       email: email,
-      password: password,
+      password: passwordHash,
     });
     await user.save();
 
@@ -41,7 +43,7 @@ const userCtrl = {
       throw new apiError(401, "Invalid user credentials");
     }
 
-    const isMatch = password.localeCompare(user.password) ? true : false;
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       throw new apiError(403, "incorrect password");
     }

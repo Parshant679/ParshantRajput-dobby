@@ -10,7 +10,7 @@ const cloudinaryMethods = {
   uploadVideos: async (LocalFilePath) => {
     try {
       const response = await cloudinary.uploader.upload(LocalFilePath, {
-        resource_type: "video",
+        resource_type: "image",
       });
       fs.unlink(LocalFilePath);
       return response;

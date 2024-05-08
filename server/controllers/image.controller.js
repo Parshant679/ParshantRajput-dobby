@@ -1,0 +1,41 @@
+import { apiResponse } from "../utills/ApiResponse";
+import { apiError } from "../utills/ApiError";
+import { cloudinarymethods } from "../utills/cloudinary";
+import ImageFile from "../models/image.model";
+import fs from "fs-extra";
+
+const imageCtrl = {
+  uploadImage: async (req, res) => {
+    const { path } = req.file;
+    const { userId, name } = req.body;
+
+    const { public_id, secure_url } = await cloudinarymethods.uploadImage(path);
+
+    const uploadedImage = new ImageFile({
+      userId: userId,
+      name: name,
+      public_id: public_id,
+      imageUrl: secure_url,
+    });
+    await uploadedImage.save();
+    return res
+      .status(201)
+      .json(new apiResponse(200, "image uploaded Successfully", uploadedImage));
+  },
+  getImages: async (req, res) => {
+    const { userId, pageNo } = req.query;
+    const skipCount = (pageNo - 1) * 10;
+
+    const userImages = await ImageFile.find({ userId: userId })
+      .sort({ updatedAt: -1 })
+      .skip(skipCount)
+      .limit(10);
+
+    return res
+      .status(201)
+      .json(new apiResponse(200, "Video retrived Successfully", userImages));
+  },
+  deleteImage: async (req, res) => {},
+};
+
+export default imageCtrl;

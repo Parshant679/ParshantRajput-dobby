@@ -1,14 +1,15 @@
 import express from "express";
-
+import { upload } from "../middleware/multer.middleware";
+import { auth } from "../middleware/auth.middleware";
+import imageCtrl from "../controllers/image.controller";
 const router = express.Router();
 
-function testimageRoute() {}
-
 // uploading image
-router.post("/image/", testimageRoute);
-//  retrive image
-router.get("/image/", testimageRoute);
-// delete image
-router.delete("/image/", testimageRoute);
+
+router
+  .route("/image/")
+  .get(auth, imageCtrl.getImages)
+  .post(auth, upload.single("file"), imageCtrl.uploadImage)
+  .delete(auth, imageCtrl.deleteImage);
 
 export default router;

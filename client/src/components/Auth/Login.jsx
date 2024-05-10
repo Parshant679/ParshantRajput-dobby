@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { GlobalState } from "../../GlobalState";
 import axios from "axios";
 function Login() {
+  const state = useContext(GlobalState);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -26,6 +28,7 @@ function Login() {
           withCredentials: true,
         }
       );
+      state.User.setUser(res.data.data);
       navigate("/user/" + res.data.data._id);
     } catch (err) {
       alert(err);

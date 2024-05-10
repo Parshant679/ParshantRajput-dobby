@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const imageFileSchecma = new mongoose.Schema(
   {
@@ -27,4 +27,4 @@ const imageFileSchecma = new mongoose.Schema(
 );
 
 const ImageFile = new mongoose.model("ImageFile", imageFileSchecma);
-export default ImageFile;
+module.exports = ImageFile;

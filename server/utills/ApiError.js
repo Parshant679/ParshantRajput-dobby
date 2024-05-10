@@ -18,4 +18,4 @@ class apiError extends Error {
     }
   }
 }
-export { apiError };
+module.exports = { apiError };

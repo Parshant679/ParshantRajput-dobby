@@ -1,5 +1,5 @@
-import fs from "fs-extra";
-import { v2 as cloudinary } from "cloudinary";
+const fs = require("fs-extra");
+const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: "dgypv5flo",
   api_key: "917975424867997",
@@ -37,4 +37,4 @@ const cloudinaryMethods = {
   //   },
 };
 
-export { cloudinaryMethods };
+module.exports = cloudinaryMethods;

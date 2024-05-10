@@ -1,8 +1,6 @@
-import { apiResponse } from "../utills/ApiResponse";
-import { apiError } from "../utills/ApiError";
-import { cloudinarymethods } from "../utills/cloudinary";
-import ImageFile from "../models/image.model";
-import fs from "fs-extra";
+const { apiResponse } = require("../utills/ApiResponse");
+const cloudinarymethods = require("../utills/cloudinary");
+const ImageFile = require("../models/image.model");
 
 const imageCtrl = {
   uploadImage: async (req, res) => {
@@ -50,4 +48,4 @@ const imageCtrl = {
   },
 };
 
-export default imageCtrl;
+module.exports = imageCtrl;

@@ -1,7 +1,7 @@
-import express from "express";
-import { upload } from "../middleware/multer.middleware";
-import { auth } from "../middleware/auth.middleware";
-import imageCtrl from "../controllers/image.controller";
+const express = require("express");
+const { upload } = require("../middleware/multer.middleware");
+const auth = require("../middleware/auth.middleware");
+const imageCtrl = require("../controllers/image.controller");
 const router = express.Router();
 
 // uploading image
@@ -13,4 +13,4 @@ router
 
 router.route("/search").get(imageCtrl.searchImage);
 
-export default router;
+module.exports = router;

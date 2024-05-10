@@ -1,4 +1,4 @@
-import { jsonwentoken as jwt } from "jsonwentoken";
+const jwt = require("jsonwebtoken");
 
 const cookieOptions = {
   httpOnly: true,
@@ -15,4 +15,4 @@ const createAccessToken = (payload) => {
   return accessToken;
 };
 
-export { createAccessToken, cookieOptions };
+module.exports = { createAccessToken, cookieOptions };

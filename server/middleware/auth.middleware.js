@@ -1,5 +1,5 @@
-import { jsonwentoken as jwt } from "jsonwentoken";
-import { apiError } from "../utills/ApiError";
+const jwt = require("jsonwebtoken");
+const { apiError } = require("../utills/ApiError");
 
 const auth = (req, res, next) => {
   const token = req.cookies?.accessToken;
@@ -15,4 +15,4 @@ const auth = (req, res, next) => {
   });
 };
 
-export { auth };
+module.exports = auth;

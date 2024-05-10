@@ -1,8 +1,10 @@
-import { createAccessToken, cookieOptions } from "../utills/generateTokens";
-import { apiResponse } from "../utills/ApiResponse";
-import { apiError } from "../utills/ApiError";
-import bcrypt from "bcrypt";
-import User from "../models/user.model";
+const {
+  createAccessToken,
+  cookieOptions,
+} = require("../utills/generateTokens");
+const { apiResponse } = require("../utills/ApiResponse");
+const { apiError } = require("../utills/ApiError");
+const User = require("../models/user.model");
 
 const userCtrl = {
   registration: async (req, res) => {
@@ -75,4 +77,4 @@ const userCtrl = {
   },
 };
 
-export default userCtrl;
+module.exports = userCtrl;
